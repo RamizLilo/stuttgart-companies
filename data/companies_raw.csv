@@ -1,0 +1,11 @@
+company,fiscal_year,revenue_eur_bn,profit_measure,profit_value,profit_unit,employees,source_note
+Mercedes-Benz Group,2022,150.0,adjusted EBIT,20.7,EUR bn,,2023 results press release (preliminary figures)
+Mercedes-Benz Group,2023,153.2,adjusted EBIT,20.0,EUR bn,166000,2023 results press release (preliminary figures; employees "around")
+Mercedes-Benz Group,2024,145.6,adjusted EBIT,13.7,EUR bn,,investor page 2025 results (preliminary and unaudited)
+Mercedes-Benz Group,2025,132.2,adjusted EBIT,8.2,EUR bn,,investor page 2025 results (preliminary and unaudited)
+Porsche AG,2023,40.53,operating result,7.28,EUR bn,,Annual press conference 2025 (FY2024 vs FY2023)
+Porsche AG,2024,40.08,operating result,5.64,EUR bn,42615,Combined Management Report 2025
+Porsche AG,2025,36.27,operating result,0.41,EUR bn,41780,Combined Management Report 2025
+Bosch Group,2023,91.6,EBIT margin from operations,5.3,percent,429416,Bosch key data 2023
+Bosch Group,2024,90.3,EBIT margin from operations,3.5,percent,,Bosch key data 2025
+Bosch Group,2025,91.0,EBIT margin from operations,2.0,percent,412774,Bosch key data 2025

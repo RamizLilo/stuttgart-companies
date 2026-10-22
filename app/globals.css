@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body { @apply bg-slate-50 text-slate-800 antialiased; }
+
+/* Print: A4 pages for the PDF report */
+@media print {
+  @page { size: A4; margin: 14mm; }
+  body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+/* Report to PDF: the browser print dialog ("Save as PDF") uses these rules */
+@page { size: A4; margin: 12mm; }
+@media print {
+  html, body { background: #fff !important; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .report-page { break-before: page; }
+  a { text-decoration: none; }
+}
+@media print {
+  /* tighter spacing so that each company chapter fits on one A4 page */
+  html { font-size: 13px; }
+  .report-page .mt-4 { margin-top: 0.6rem; }
+  .report-page h2.text-3xl { font-size: 1.6rem; line-height: 2rem; }
+  .report-page section, .report-page .rounded-xl { padding-top: 0.6rem; padding-bottom: 0.6rem; }
+  .report-page table td, .report-page table th { padding-top: 0.3rem; padding-bottom: 0.3rem; }
+}
