@@ -2,7 +2,7 @@
 import { cloneElement } from "react";
 import {
   ResponsiveContainer, LineChart, Line, BarChart, Bar, ComposedChart, XAxis, YAxis, CartesianGrid,
-  Tooltip, Legend, Cell, ReferenceLine,
+  Tooltip, Legend, Cell, ReferenceLine, ScatterChart, Scatter, LabelList,
 } from "recharts";
 
 const AXIS = { fontSize: 12, fill: "#64748b" };
@@ -97,5 +97,49 @@ export function PrintSafe({ children, width }) {
       <div className="print:hidden">{children()}</div>
       <div className="hidden print:block">{children(width)}</div>
     </>
+  );
+}
+
+// One chart for any metric: bars or lines, with a number formatter for the axis and the tooltip.
+// data rows look like { year: 2024, Porsche: 12.3, Bosch: null }
+export function MetricChart({ data, series, kind = "bar", fmt, na = "n/a", width, height = 300, legend = true }) {
+  const Chart = kind === "line" ? LineChart : BarChart;
+  return (
+    <Frame width={width} height={height}>
+      <Chart data={data} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
+        <CartesianGrid stroke="#e2e8f0" vertical={false} />
+        <XAxis dataKey="year" tick={AXIS} tickLine={false} />
+        <YAxis tick={AXIS} tickLine={false} axisLine={false} tickFormatter={(v) => fmt(v)} width={60} />
+        <Tooltip formatter={(v) => (v == null ? na : fmt(Number(v)))} />
+        {legend && <Legend itemSorter={null} wrapperStyle={LEGEND} />}
+        {series.map((s) => kind === "line"
+          ? <Line key={s.short} dataKey={s.short} stroke={s.color} strokeWidth={2.5} dot={{ r: 4 }} isAnimationActive={false} />
+          : <Bar key={s.short} dataKey={s.short} fill={s.color} radius={[3, 3, 0, 0]} isAnimationActive={false} />)}
+      </Chart>
+    </Frame>
+  );
+}
+
+// Each point is one company in one year. Points of a company are joined in time order.
+// series: [{ short, color, points: [{ x, y, year }] }]
+export function ScatterView({ series, xLabel, yLabel, xFmt, yFmt, width, height = 320 }) {
+  return (
+    <Frame width={width} height={height}>
+      <ScatterChart margin={{ top: 16, right: 24, left: 0, bottom: 20 }}>
+        <CartesianGrid stroke="#e2e8f0" />
+        <XAxis type="number" dataKey="x" name={xLabel} tick={AXIS} tickLine={false} tickFormatter={xFmt} domain={["auto", "auto"]}
+          label={{ value: xLabel, position: "insideBottom", offset: -12, fontSize: 12, fill: "#64748b" }} />
+        <YAxis type="number" dataKey="y" name={yLabel} tick={AXIS} tickLine={false} axisLine={false} tickFormatter={yFmt} width={52} domain={["auto", "auto"]} />
+        <Tooltip cursor={{ strokeDasharray: "3 3" }}
+          formatter={(v, name) => (name === xLabel ? xFmt(v) : yFmt(v))}
+          labelFormatter={() => ""} />
+        <Legend itemSorter={null} wrapperStyle={LEGEND} />
+        {series.map((s) => (
+          <Scatter key={s.short} name={s.short} data={s.points} fill={s.color} line={{ stroke: s.color, strokeWidth: 1.5 }} lineType="joint" isAnimationActive={false}>
+            <LabelList dataKey="year" position="top" style={{ fontSize: 11, fill: "#475569" }} />
+          </Scatter>
+        ))}
+      </ScatterChart>
+    </Frame>
   );
 }

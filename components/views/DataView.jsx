@@ -5,14 +5,8 @@ import { T } from "@/lib/i18n";
 import { makeFmt } from "@/lib/format";
 import { COLUMNS, toCsv, toJson, TEMPLATE_CSV } from "@/lib/metrics";
 import { useData } from "@/components/DataProvider";
+import { download } from "@/lib/download";
 import { PageHead, Card } from "@/components/Ui";
-
-function download(name, text, type) {
-  const url = URL.createObjectURL(new Blob([text], { type }));
-  const a = document.createElement("a");
-  a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-}
 
 const btn = "inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50";
 

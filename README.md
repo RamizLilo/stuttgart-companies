@@ -8,6 +8,11 @@ A small dashboard that compares three well-known companies from the Stuttgart re
 
 ## Features
 
+- **Filters:** choose a year and which companies to show. The choice is kept in the address (`?y=2024&c=bosch`), so a link opens the same view.
+- **Command palette:** press Ctrl/⌘ + K to jump to a page, switch language or year, show or hide a company, copy the link or download the CSV.
+- **Charts:** metric picker, bars or lines, revenue index (first year = 100), margin heatmap, revenue-vs-margin scatter plot, and a PNG download for every chart.
+- **What-if calculator:** profit at another margin, as plain arithmetic (not a forecast).
+- **People view:** employees, revenue and profit per employee, and which numbers the sources provide.
 - **Report:** a long, scrollable report with a chapter for each company (profile, key figures, year-by-year table, chart). The button "Download PDF" opens the browser print dialog; choose "Save as PDF". Sample files: `docs/sample-report-en.pdf` and `docs/sample-report-de.pdf`.
 - **Import:** load your own CSV file (same columns as `data/companies_raw.csv`). It is validated, with clear messages for wrong lines, and all pages and the report recalculate. The file stays in the browser and is not uploaded anywhere.
 - **Export:** download the current dataset as CSV or JSON, or a CSV template.

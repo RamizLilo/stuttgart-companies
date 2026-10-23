@@ -44,3 +44,9 @@ A short record of what was done and why, in order.
 - Create the GitHub repository and deploy on Vercel.
 - Add the project in the portfolio Admin (Code and Live Demo links, screenshot).
 - Optional: more years from the audited annual reports; a German version of the pages.
+
+## Upgrade 3 (2026-10-23)
+- Added shared filters (year, companies) synced to the URL, a command palette (Ctrl/⌘+K), PNG export for charts.
+- Overview, Profitability and People rebuilt: KPI cards with trend lines and changes, "of every 100 €" bars, metric picker, index chart, ranking, margin heatmap, scatter plot, what-if calculator, profit per employee.
+- Tested at 1440, 820, 390 and 320 px in EN and DE with no page overflow; report PDFs still 5 pages. The data table scrolls sideways on phones on purpose.
+- Kept the rule: no causes are claimed, only what the figures show.
